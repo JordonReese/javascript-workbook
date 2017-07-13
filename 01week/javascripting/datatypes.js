@@ -57,7 +57,7 @@ console.log(adding());
 function alwaysTrue() {         // only runs when both items are true
   const yes1 = true;
   const yes2 = true;
-  while (yes1 && yes2 === true) {
+  if (yes1 && yes2 === true) {
     return "It's working!!";
   }
 }
@@ -66,7 +66,7 @@ console.log(alwaysTrue());
 function onlyOneIsTrue() {      // only runs when one item is true
   const yes1 = true;
   const no1 = false;
-  while (yes1 && no1 != true) {
+  if (yes1 && no1 != true) {
     return "I love lamp";
   }
 }
@@ -75,7 +75,7 @@ console.log(onlyOneIsTrue());
 function alwaysFalse() {        // only runs when both items are false
   const false_1 = false;
   const false_2 = false;
-  while (false_1 != true && false_2 != true) {
+  if (false_1 != true && false_2 != true) {
     return "Whiskey is liquid sunshine";
   }
 }
