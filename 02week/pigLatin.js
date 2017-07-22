@@ -7,12 +7,31 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
+const vowels = ['a', 'e', 'i', 'o', 'u']
 function pigLatin(word) {
-
-  // Your code here
-
+  word = word.trim().toLowerCase().split('');
+  for (let i = 0; i < word.length; i++) {
+    if (vowels.indexOf(word[i]) !== -1 && word[i] === word[0]) {
+      return word.join('') + 'yay';
+    }else if (vowels.indexOf(word[i]) >= 0){
+      const tempWord = word.slice(0,i);
+      word = word.slice(i,word.length);
+      return word.join('') + tempWord.join('') + 'ay';
+    }
+  }
 }
+
+// let tempWord = '';
+// for (let i = 0; i < word.length; i++ ) {
+//   const firstLetter = word.substr(i,1);
+//   console.log(firstLetter !== 'a' , firstLetter !== 'e', firstLetter !== 'i', firstLetter !== 'o', firstLetter !== 'u', firstLetter !== 'y');
+//   if (firstLetter !== 'a' && firstLetter !== 'e'&& firstLetter !== 'i'&& firstLetter !== 'o'&& firstLetter !== 'u'&& firstLetter !== 'y') {
+//     tempWord += word.substr(i,1);
+//     word = word.slice(i+1,word.length);
+//     console.log(word[i], 'substr')
+//  }else{
+//    console.log(word, 'word else');
+//    return word + tempWord + 'ay';
 
 
 function getPrompt() {
