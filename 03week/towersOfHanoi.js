@@ -6,6 +6,9 @@
 
 // Am I even doing this right?
 
+// I think I'll just come back to this tomorrow
+// Goodnight cruel world
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
