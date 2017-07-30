@@ -18,39 +18,33 @@ Write a JavaScript program that runs when both things are not true.
 **/
 
 function currentDate() {          // displays the current date and time
-  const date = new Date();
-  return date;
+  return new Date();
 }
 console.log(currentDate());
 
 function convertToString() {      // converts a number into a string
   const number = 10;
-  const string = number.toString();
-  return string;
+  return number.toString();
 }
 console.log(convertToString());
 
 function convertToNumber() {      // convert a string to a number
   const string = '27';
-  const number = parseInt(string);
-  return number;
+  return parseInt(string);
 }
 console.log(convertToNumber());
 
-function showMeTheData() {        // displays what data type each element is
-  console.log(typeof true);
-  console.log(typeof null);
-  console.log(typeof 27);
-  console.log(typeof 0/0);
-  console.log(typeof 'JR');
+
+function showMeTheData(arg1) {        // displays what data type each element is
+  return typeof(arg1);
 }
+
 console.log(showMeTheData());
 
 function adding() {              // displays the sum of two numbers
   const num1 = 10;
   const num2 = 20;
-  const total = num1 + num2;
-  return total;
+  return num1 + num2;
 }
 console.log(adding());
 
