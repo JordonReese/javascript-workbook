@@ -1,6 +1,8 @@
 'use strict';
 
 // adding some comments here at the top
+// it's 10pm on a saturday...I'm inside working on homework : /
+// someone please save me
 
 const assert = require('assert');
 const readline = require('readline');
