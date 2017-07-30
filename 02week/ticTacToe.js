@@ -71,7 +71,7 @@ function checkForWin() {
   }
 }
 
-var isSpaceAvailable = function(row, column) {
+let isSpaceAvailable = function(row, column) {
   return ( board[row][column] === ' ' );
 }
 
