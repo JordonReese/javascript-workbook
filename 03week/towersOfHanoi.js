@@ -4,6 +4,8 @@
 // it's 10pm on a saturday...I'm inside working on homework : /
 // someone please save me
 
+// Am I even doing this right?
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
