@@ -1,17 +1,5 @@
 'use strict';
 
-// adding some comments here at the top
-// it's 10pm on a saturday...I'm inside working on homework : /
-// someone please save me
-
-// Am I even doing this right?
-
-// I think I'll just come back to this tomorrow
-// Goodnight cruel world
-
-// This should be number 5
-// For real though, I'm going to bed
-
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
