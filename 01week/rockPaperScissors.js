@@ -15,6 +15,8 @@ function rockPaperScissors(hand1, hand2) {
   };
   return hand2 === 'rock' ? 'rock loses' : 'paper wins!';
   return hand2 === 'paper' ? 'paper loses' : 'paper wins!';
+  
+  // I think the condition for scissors might be a little redundant
   return hand2 === 'scissors' ? 'scissors loses' : 'scissors wins!';
 }
 
