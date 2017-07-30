@@ -1,5 +1,7 @@
 'use strict';
 
+// adding some comments here at the top
+
 const assert = require('assert');
 const readline = require('readline');
 const rl = readline.createInterface({
