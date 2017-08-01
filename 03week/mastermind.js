@@ -46,6 +46,7 @@ function generateHint(guess, solution) {
   // repeat loop for all letters in guess array against solution array
 
   // initialize the variables corrLetter and corrPostions as accumulators
+  // since these variable would possibly change each round let seemed best
   let corrLetter = 0;
   let corrPosition = 0;
   for (let i = 0; i < solution.length; i++) {
@@ -70,6 +71,7 @@ function mastermind(guess) {
   }
 
   // print out number of corrLetter/corrPosition (corrLetter - corrPosition)
+  // since hint would change each round let seemed the best solution
   let hint = generateHint(guess, solution);
   board.push(hint + ': ' + guess);
 }
