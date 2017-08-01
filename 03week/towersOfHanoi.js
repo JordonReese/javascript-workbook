@@ -22,15 +22,15 @@ function printStacks() {
 function movePiece(startStack, endStack) {
   // pop off a value from the starting stack and save it to a variable
   // then push that to the endStack
-  let start = stacks[startStack].pop();
+  const start = stacks[startStack].pop();
   stacks[endStack].push(start);
 }
 
 function isLegal(startStack, endStack) {
   // set legal to false and return legal at end to see if valid move
   let legal = false
-  let startBlock = stacks[startStack][stacks[startStack].length - 1]
-  let endBlock = stacks[endStack][stacks[endStack].length - 1]
+  const startBlock = stacks[startStack][stacks[startStack].length - 1]
+  const endBlock = stacks[endStack][stacks[endStack].length - 1]
   if (stacks[endStack].length >= 0) {
     legal = true;
   }
