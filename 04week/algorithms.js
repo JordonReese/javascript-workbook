@@ -10,13 +10,24 @@ function getRandomInt(min, max) {
 
 let arr = [];
 
-for (let i = 0; i < 1000; i++) {
-  arr.push(getRandomInt(0, 1000));
+for (let i = 0; i < 10; i++) {
+  arr.push(getRandomInt(0, 10));
 }
 
 function bubbleSort(arr) {
-  // Your code here
+  let swap = false;
+  for (let i = 0; i < arr.length; i++) {
+    for (let n = i+1; n < arr.length; n++) {
+      if (arr[i] > arr[n]) {
+        let temp = arr[i];
+        arr[i] = arr[n];
+        arr[n] = temp;
+      }
+    }
+  }
 }
+
+
 
 function mergeSort(arr) {
   // Your code here
@@ -62,7 +73,8 @@ if (typeof describe === 'function') {
   });
 
 } else {
-
+  bubbleSort(arr);
   console.log('Run the tests!')
+  console.log(arr);
 
 }
