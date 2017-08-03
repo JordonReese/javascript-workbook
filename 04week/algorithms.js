@@ -15,7 +15,6 @@ for (let i = 0; i < 10; i++) {
 }
 
 function bubbleSort(arr) {
-  let swap = false;
   for (let i = 0; i < arr.length; i++) {
     for (let n = i+1; n < arr.length; n++) {
       if (arr[i] > arr[n]) {
@@ -30,7 +29,7 @@ function bubbleSort(arr) {
 
 
 function mergeSort(arr) {
-  // Your code here
+  // Half the array
 }
 
 function binarySearch(arr, item) {
