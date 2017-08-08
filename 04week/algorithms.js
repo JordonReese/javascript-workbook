@@ -64,6 +64,7 @@ function binarySearch(sortedArray, item) {
   // struggling with the logic on this
   // keep getting Maximum call stack size exceeded
   // recursion isn't dropping out correctly
+  // also having issue with item being in larger half of array
   let end = sortedArray.length-1;
   let middle = Math.floor(sortedArray.length / 2);
   if (item === sortedArray[middle]) {
