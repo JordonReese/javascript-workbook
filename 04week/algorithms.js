@@ -60,6 +60,10 @@ function merge(lefty, righty) {
 const sortedArray = [1,2,3,4,5,6,7,8,9,10];
 
 function binarySearch(sortedArray, item) {
+
+  // struggling with the logic on this
+  // keep getting Maximum call stack size exceeded
+  // recursion isn't dropping out correctly
   let end = sortedArray.length-1;
   let middle = Math.floor(sortedArray.length / 2);
   if (item === sortedArray[middle]) {
