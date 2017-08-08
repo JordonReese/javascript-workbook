@@ -29,12 +29,52 @@ function bubbleSort(arr) {
 
 
 function mergeSort(arr) {
-  // Half the array
+  if (arr.length < 2) return arr;
+
+  let middle = Math.floor(arr.length / 2);
+  let left = arr.slice(0,middle);
+  let right = arr.slice(middle,arr.length);
+
+  return merge(mergeSort(left),mergeSort(right));
 }
 
-function binarySearch(arr, item) {
-  // Your code here
+function merge(lefty, righty) {
+  const result = [];
+  while (lefty.length && righty.length) {
+    if (lefty[0] <= righty[0]) {
+      result.push(lefty.shift());
+    } else {
+      result.push(righty.shift());
+    }
+  }
+  while (lefty.length) {
+    result.push(lefty.shift());
+  }
+  while (righty.length) {
+    result.push(righty.shift());
+  }
+  return result;
 }
+
+
+const sortedArray = [1,2,3,4,5,6,7,8,9,10];
+
+function binarySearch(sortedArray, item) {
+  let end = sortedArray.length-1;
+  let middle = Math.floor(sortedArray.length / 2);
+  if (item === sortedArray[middle]) {
+    return middle;
+  } else if (item < sortedArray[middle]) {
+    return binarySearch(sortedArray.slice(0, middle - 1), item);
+  } else if (item > sortedArray[middle]) {
+    return binarySearch(sortedArray.slice(middle + 1, end), item);
+  } else {
+    return false;
+  }
+}
+
+
+
 
 // Tests
 
@@ -72,8 +112,8 @@ if (typeof describe === 'function') {
   });
 
 } else {
-  bubbleSort(arr);
+
   console.log('Run the tests!')
-  console.log(arr);
+
 
 }
