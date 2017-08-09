@@ -9,7 +9,16 @@ let jobTypes = {
   programmer: 'Any Ship!'
 };
 
-// Your code here
+// Build a new object called CrewMember
+//    object should have properties: name, job, specialSkill, and ship
+//    ship should be assigned null
+//    have a method to enter a ship
+
+// Build a new object called Ship
+//    object should have properties: name, type, ability, and an empty crew
+//    has a method to return a mission statement correctly
+
+
 
 //tests
 if (typeof describe === 'function'){
