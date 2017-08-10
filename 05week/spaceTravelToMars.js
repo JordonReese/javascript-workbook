@@ -13,13 +13,38 @@ let jobTypes = {
 //    object should have properties: name, job, specialSkill, and ship
 //    ship should be assigned null
 //    have a method to enter a ship
+//        pass CrewMember.name into enterShip
+//        push CrewMember.name to Ship.crew
 
 // Build a new object called Ship
 //    object should have properties: name, type, ability, and an empty crew
 //    has a method to return a mission statement correctly
 
 
+class CrewMember {
+  constructor(name, job, specialSkill){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+  enterShip(ship) {
+    this.ship = ship;
+    ship.crew.push(this);
+  }
+}
 
+class Ship {
+  constructor(name, type, ability) {
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = [];
+  }
+  missionStatement() {
+
+  }
+}
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
