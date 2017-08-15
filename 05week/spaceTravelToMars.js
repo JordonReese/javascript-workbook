@@ -42,7 +42,11 @@ class Ship {
     this.crew = [];
   }
   missionStatement() {
-
+    if(this.crew.length > 0) {
+      return this.ability;
+    } else {
+      return `Can't perform a mission yet.`;
+    }
   }
 }
 //tests
