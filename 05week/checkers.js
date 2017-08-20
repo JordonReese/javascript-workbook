@@ -8,12 +8,18 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+function Checker(color) {
+  this.symbol = color;
+  if (color === 'white') {
+    this.symbol = String.fromCharCode(0x125CB);
+  } else {
+    this.symbol = String.fromCharCode(0x125CF);
+  }
 }
 
 function Board() {
   this.grid = [];
+  this.checker = [];
   // creates an 8x8 array, filled with null values
   this.createGrid = function() {
     // loop to create the 8 rows
@@ -24,7 +30,36 @@ function Board() {
         this.grid[row].push(null);
       }
     }
-  };
+  }
+
+  this.createCheckers = function() {
+    const whitePositions = [
+      [0, 1], [0, 3], [0, 5], [0, 7],
+      [1, 0], [1, 2], [1, 4], [1, 6],
+      [2, 1], [2, 3], [2, 5], [2, 7],
+    ];
+    const blackPositions = [
+      [5, 0], [5, 2], [5, 4], [5, 6],
+      [6, 1], [6, 3], [6, 5], [6, 7],
+      [7, 0], [7, 2], [7, 4], [7, 6],
+    ];
+
+    for (let i = 0; i < 11; i++) {
+      let whiteChecker = new Checker('white');
+      let whiteRow = whitePositions[i][0];
+      let whiteCol = whitePositions[i][1];
+      this.checker.push(whiteChecker);
+      this.grid[whiteRow][whiteCol] = whiteChecker;
+    }
+
+    for (let i = 0; i < 11; i++) {
+      let blackRow = blackPositions[i][0];
+      let blackCol = blackPositions[i][1];
+      let blackChecker = new Checker('black');
+      this.checker.push(blackChecker);
+      this.grid[blackRow][blackCol] = blackChecker;
+    }
+  }
 
   // prints out the board
   this.viewGrid = function() {
@@ -52,6 +87,8 @@ function Board() {
     console.log(string);
   };
 
+
+
   // Your code here
 }
 function Game() {
@@ -60,6 +97,7 @@ function Game() {
 
   this.start = function() {
     this.board.createGrid();
+    this.board.createCheckers();
     // Your code here
   };
 }
