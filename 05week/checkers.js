@@ -36,6 +36,13 @@ function Board() {
     return this.grid[row][column];
   }
 
+  this.killChecker = function(position) {
+    const deadChecker = this.selectChecker(position[0], position[1]);
+    const index = this.checkers.indexOf(deadChecker);
+    this.checkers.splice(index,1);
+    this.grid[position[0]][position[1]] = null;
+  }
+
   this.createCheckers = function() {
     const whitePositions = [
       [0, 1], [0, 3], [0, 5], [0, 7],
