@@ -11,9 +11,9 @@ const rl = readline.createInterface({
 function Checker(color) {
   this.symbol = color;
   if (color === 'white') {
-    this.symbol = String.fromCharCode(0x125CB);
-  } else {
     this.symbol = String.fromCharCode(0x125CF);
+  } else {
+    this.symbol = String.fromCharCode(0x125CB);
   }
 }
 
@@ -32,6 +32,10 @@ function Board() {
     }
   }
 
+  this.selectChecker = function(row, column) {
+    return this.grid[row][column];
+  }
+
   this.createCheckers = function() {
     const whitePositions = [
       [0, 1], [0, 3], [0, 5], [0, 7],
@@ -44,7 +48,7 @@ function Board() {
       [7, 0], [7, 2], [7, 4], [7, 6],
     ];
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 12; i++) {
       let whiteChecker = new Checker('white');
       let whiteRow = whitePositions[i][0];
       let whiteCol = whitePositions[i][1];
@@ -52,7 +56,7 @@ function Board() {
       this.grid[whiteRow][whiteCol] = whiteChecker;
     }
 
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i < 12; i++) {
       let blackRow = blackPositions[i][0];
       let blackCol = blackPositions[i][1];
       let blackChecker = new Checker('black');
@@ -98,7 +102,11 @@ function Game() {
   this.start = function() {
     this.board.createGrid();
     this.board.createCheckers();
-    // Your code here
+    this.moveChecker = function(start, end) {
+      let checker = this.board.selectChecker(start[0],start[1]);
+      this.board.grid[start[0]][start[1]] = null;
+      this.board.grid[end[0]][end[1]] = checker;
+    }
   };
 }
 
