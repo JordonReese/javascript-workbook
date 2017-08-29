@@ -15,16 +15,20 @@ for (let i = 0; i < 10; i++) {
 }
 
 function bubbleSort(arr) {
+  let swap = false;
   for (let i = 0; i < arr.length; i++) {
-    for (let n = i+1; n < arr.length; n++) {
-      if (arr[i] > arr[n]) {
-        let temp = arr[i];
-        arr[i] = arr[n];
-        arr[n] = temp;
+    if (arr[i] > arr[i+1]) {
+      swap = true;
+      let temp = arr[i];
+      arr[i] = arr[i+1];
+      arr[i+1] = temp;
       }
     }
+    if(swap) {
+      return bubbleSort(arr);
+    }
+    return arr;
   }
-}
 
 
 
@@ -57,25 +61,17 @@ function merge(lefty, righty) {
 }
 
 
-const sortedArray = [1,2,3,4,5,6,7,8,9,10];
-
-function binarySearch(sortedArray, item) {
-
+function binarySearch(array, item, start = 0, end = array.length-1) {
   // struggling with the logic on this
   // keep getting Maximum call stack size exceeded
   // recursion isn't dropping out correctly
   // also having issue with item being in larger half of array
-  let end = sortedArray.length-1;
-  let middle = Math.floor(sortedArray.length / 2);
-  if (item === sortedArray[middle]) {
-    return middle;
-  } else if (item < sortedArray[middle]) {
-    return binarySearch(sortedArray.slice(0, middle - 1), item);
-  } else if (item > sortedArray[middle]) {
-    return binarySearch(sortedArray.slice(middle + 1, end), item);
-  } else {
-    return false;
-  }
+  const middle = Math.floor(start + (end - start) / 2);
+  if (item == array[middle]) return middle;
+  else if (start >= end) return false;
+  else if (item < array[middle]) return binarySearch(array, item, start, middle-1);
+  else if (item > array[middle]) return binarySearch(array, item, middle + 1, end);
+  else return false;
 }
 
 
