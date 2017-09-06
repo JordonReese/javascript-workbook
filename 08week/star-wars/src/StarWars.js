@@ -152,6 +152,9 @@ class StarWars extends Component {
     };  // this.state object
   }  //Constructor
 
+
+// Can refactor to make fetch dynamic
+// somehow....
   componentWillMount() {
       fetch('https://swapi.co/api/planets/')
           .then((response) => response.json())
@@ -204,7 +207,7 @@ class StarWars extends Component {
         });
     }
 
-    // refactor random function
+    // refactor render functions
     // create array of random numbers with no repeats
     // map array against planets object to find values for questions
     renderPlanets() {
@@ -259,8 +262,7 @@ class StarWars extends Component {
     console.log('initialize');
       [0,1,2,3,4].forEach((id, index)=>{
       // Pulling the questions via Fetch.  Populating the planets category
-      // does not handle duplicated
-      // weird error where API sometimes wont return values
+      // error where API sometimes wont return values
       let planetID = this.renderPlanets();
       if (planetID !== undefined) {
         console.log(planetID);
