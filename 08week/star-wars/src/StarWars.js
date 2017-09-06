@@ -156,7 +156,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/planets/')
           .then((response) => response.json())
           .then((responseJson) => {
-            // console.log(responseJson);
             return this.setState({planets: responseJson.results})
           })
           .catch((error) => {
@@ -166,8 +165,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/starships')
         .then((resp) => resp.json())
         .then((respjson) => {
-          let starships = respjson;
-          console.log(starships);
           return this.setState({starships: respjson.results})
         })
         .catch((error) => {
@@ -176,8 +173,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/vehicles')
         .then((resp) => resp.json())
         .then((respjson) => {
-          let vehicles = respjson;
-          console.log(vehicles);
           return this.setState({vehicles: respjson.results})
         })
         .catch((error) => {
@@ -186,8 +181,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/people')
         .then((resp) => resp.json())
         .then((respjson) => {
-          let people = respjson;
-          console.log(people);
           return this.setState({people: respjson.results})
         })
         .catch((error) => {
@@ -196,8 +189,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/films')
         .then((resp) => resp.json())
         .then((respjson) => {
-          let films = respjson;
-          console.log(films);
           return this.setState({films: respjson.results})
         })
         .catch((error) => {
@@ -206,8 +197,6 @@ class StarWars extends Component {
       fetch('https://swapi.co/api/species')
         .then((resp) => resp.json())
         .then((respjson) => {
-          let species = respjson;
-          console.log(species);
           return this.setState({species: respjson.results})
         })
         .catch((error) => {
@@ -215,51 +204,129 @@ class StarWars extends Component {
         });
     }
 
+    // refactor random function
+    // create array of random numbers with no repeats
+    // map array against planets object to find values for questions
     renderPlanets() {
       if(this.state.planets) {
         let randomInt = Math.floor(Math.random() * 10) + 1;
         let randomPlanet = this.state.planets[randomInt];
-        // return randomPlanet;
-        console.log(randomPlanet, 'in renderPlanets');
         return randomPlanet;
+      }
+    }
+
+    renderShips() {
+      if(this.state.starships) {
+        let randomInt = Math.floor(Math.random() * 10) + 1;
+        let randomShip = this.state.starships[randomInt];
+        return randomShip;
+        }
+      }
+
+    renderVehicles() {
+      if(this.state.vehicles) {
+        let randomInt = Math.floor(Math.random() * 10) + 1;
+        let randomVehicles = this.state.vehicles[randomInt];
+        return randomVehicles;
+        }
+      }
+
+    renderPeople() {
+      if(this.state.people) {
+        let randomInt = Math.floor(Math.random() * 10) + 1;
+        let randomPeople = this.state.people[randomInt];
+        return randomPeople;
+        }
+      }
+
+    renderFilms() {
+      if(this.state.films) {
+        let randomInt = Math.floor(Math.random() * 10) + 1;
+        let randomFilms = this.state.films[randomInt];
+        return randomFilms;
+        }
+      }
+
+    renderSpecies() {
+      if(this.state.species) {
+        let randomInt = Math.floor(Math.random() * 10) + 1;
+        let randomSpecies = this.state.species[randomInt];
+        return randomSpecies;
         }
       }
 
   initState() {
-
-
     console.log('initialize');
-    [0,1,2,3,4].forEach((id, index)=>{
+      [0,1,2,3,4].forEach((id, index)=>{
       // Pulling the questions via Fetch.  Populating the planets category
+      // does not handle duplicated
+      // weird error where API sometimes wont return values
       let planetID = this.renderPlanets();
-      console.log(planetID, 'planetID');
-      const planetSquare = new SquareClass(id);
-      console.log(planetID['rotation_period'],'roation_period')
-      planetSquare.question =`Rotation Period: ${planetID['rotation_period']} Climate: ${planetID['climate']} Terrain: ${planetID['terrain']}`
-      planetSquare.answer = planetID['name'];
-      planetSquare.answer = planetSquare.answer.toString();
-      this.game['board']['planets'].push(planetSquare);
+      if (planetID !== undefined) {
+        console.log(planetID);
+        const planetSquare = new SquareClass(id);
+        planetSquare.question =`Rotation Period: ${planetID['rotation_period']} Climate: ${planetID['climate']} Terrain: ${planetID['terrain']}`
+        planetSquare.answer = planetID['name'];
+        planetSquare.answer = planetSquare.answer.toString();
+        this.game['board']['planets'].push(planetSquare);
+    };
 
       // Pulling the questions via Fetch.  Populating the spaceships category
-      const shipSquare = new SquareClass(id);
-      this.game['board']['ships'].push(shipSquare);
+      let shipID = this.renderShips();
+      if (shipID !== undefined) {
+        console.log(shipID);
+        const shipSquare = new SquareClass(id);
+        shipSquare.question = `Model: ${shipID['model']} Manufacturer: ${shipID['manufacturer']} Starship Class: ${shipID['starship_class']}`
+        shipSquare.answer = shipID['name'];
+        shipSquare.answer = shipSquare.answer.toString();
+        this.game['board']['ships'].push(shipSquare);
+    };
 
       // Pulling the questions via Fetch.  Populating the vehicles category
-      const vehicleSquare = new SquareClass(id);
-      this.game['board']['vehicles'].push(vehicleSquare);
+      let vehicleID = this.renderVehicles();
+      if (vehicleID !== undefined) {
+        console.log(vehicleID);
+        const vehicleSquare = new SquareClass(id);
+        vehicleSquare.question =  `Model: ${vehicleID['model']} Manufacturer: ${vehicleID['manufacturer']} Vehicles Class: ${vehicleID['vehicle_class']}`
+        vehicleSquare.answer = vehicleID['name'];
+        vehicleSquare.answer = vehicleSquare.answer.toString();
+        console.log(vehicleID.answer,'Answer to Vehicle Question');
+        this.game['board']['vehicles'].push(vehicleSquare);
+    };
 
       // Pulling the questions via Fetch.  Populating the people category
-      const peopleSquare = new SquareClass(id);
-      this.game['board']['people'].push(peopleSquare);
+      let peopleID = this.renderPeople();
+      if (peopleID !== undefined) {
+        console.log(peopleID);
+        const peopleSquare = new SquareClass(id);
+        peopleSquare.question =`Gender: ${peopleID['gender']} Hair Color: ${peopleID['hair_color']} Eye Color: ${peopleID['eye_color']}`
+        peopleSquare.answer = peopleID['name'];
+        peopleSquare.answer = peopleSquare.answer.toString();
+        this.game['board']['people'].push(peopleSquare);
+    };
 
       // Pulling the questions via Fetch.  Populating the films category
-      const filmSquare = new SquareClass(id);
-      this.game['board']['films'].push(filmSquare);
+      let filmID = this.renderFilms();
+      if (filmID !== undefined) {
+        console.log(filmID);
+        const filmSquare = new SquareClass(id);
+        filmSquare.question = `Release Date: ${filmID['release_date']} Producer(s): ${filmID['producer']} Episode Number: ${filmID['episode_id']}`
+        filmSquare.answer = filmID['title'];
+        filmSquare.answer = filmSquare.answer.toString();
+        this.game['board']['films'].push(filmSquare);
+    };
 
-      // Pulling the questions via Fetch.  Populating the species category
-      const speciesSquare = new SquareClass(id);
-      this.game['board']['species'].push(speciesSquare);
-    });
+      // // Pulling the questions via Fetch.  Populating the species category
+      let speciesID = this.renderSpecies();
+      if(speciesID !== undefined) {
+        console.log(speciesID);
+        const speciesSquare = new SquareClass(id);
+        speciesSquare.question = `Classification: ${speciesID['classification']} Average Height: ${speciesID['average_height']} Languages: ${speciesID['language']}`
+        speciesSquare.answer = speciesID['name'];
+        speciesSquare.answer = speciesSquare.answer.toString();
+        this.game['board']['species'].push(speciesSquare);
+    };
+  });
     console.log('this.game.board',this.game['board']);
     // console.log('planets[id]', this.game['board']['planets'][0]);
 
