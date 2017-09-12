@@ -153,8 +153,9 @@ class StarWars extends Component {
   }  //Constructor
 
 
-// Can refactor to make fetch dynamic
-// somehow....
+/* Can refactor to make fetch dynamic
+  use the example from DarkSkies to dynamiclly build fetches with array of categories
+  somehow.... */
   componentWillMount() {
       fetch('https://swapi.co/api/planets/')
           .then((response) => response.json())
@@ -264,7 +265,7 @@ class StarWars extends Component {
       // Pulling the questions via Fetch.  Populating the planets category
       // error where API sometimes wont return values
       let planetID = this.renderPlanets();
-      if (planetID !== undefined) {
+      if (planetID) {
         console.log(planetID);
         const planetSquare = new SquareClass(id);
         planetSquare.question =`Rotation Period: ${planetID['rotation_period']} Climate: ${planetID['climate']} Terrain: ${planetID['terrain']}`
