@@ -16,6 +16,7 @@ class PokemonCard extends Component {
         <h2>Name: {this.props.name}</h2>
         <p>Id Number: {this.props.id}</p>
         <p>Weight: {this.props.weight}lbs</p>
+        <img src={this.props.sprite} />
       </div>
     );
   }

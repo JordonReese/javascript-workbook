@@ -10,7 +10,8 @@ import PokemonCard from './PokemonCard';
 
 class App extends Component {
   state = {
-    pokemon: ''
+    pokemonText: '',
+    pokemon:null
   };
 
   getThePokemonData(paramString) {
@@ -27,19 +28,23 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let pokemonName = `${this.state.pokemon}`;
-    this.getThePokemonData(pokemonName);
+    this.getThePokemonData(this.state.pokemonText);
   }
 
   reset() {
     this.setState(prevState => ({
-      pokemon: ''
+      pokemonText: '',
+      pokemon:null
     }))
   }
 
   renderPokemon() {
-    if(this.state.pokemon) {
-      return <PokemonCard name={this.state.pokemon['name']} id={this.state.pokemon['id']} weight={this.state.pokemon['weight']} />
+
+    if(this.state.pokemon ) {
+      return <PokemonCard
+        name={this.state.pokemon['name']} id={this.state.pokemon['id']} weight={this.state.pokemon['weight']}
+        sprite={this.state.pokemon['sprites']['front_default']}
+      />
       }
     }
 
@@ -51,8 +56,9 @@ class App extends Component {
           <input
             type="text"
             placeholder="Pokemon Name"
-            value={this.state.pokemon}
-            onChange={(e) => this.setState({pokemon: e.target.value}) } />
+            value={this.state.pokemonText}
+            onChange={(e) => this.setState({pokemonText: e.target.value}) }
+          />
           <br/>
           <input type="submit"/>
           <button onClick={(e) => this.reset()}>
